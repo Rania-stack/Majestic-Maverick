@@ -1,0 +1,91 @@
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { MessageSquare, User, BookOpen } from "lucide-react";
+
+export default function App() {
+  return (
+    <div className="p-4 space-y-6">
+      {/* Home Screen */}
+      <div>
+        <Input placeholder="Search courses..." className="mb-4" />
+
+        <h2 className="text-xl font-bold mb-2">Featured Courses</h2>
+        <div className="grid grid-cols-2 gap-2">
+          {["AI Basics", "React Fundamentals"].map((course) => (
+            <Card key={course}>
+              <CardContent className="p-2">{course}</CardContent>
+            </Card>
+          ))}
+        </div>
+
+        <h2 className="text-xl font-bold mt-4 mb-2">Recommended for You</h2>
+        <ScrollArea className="h-32">
+          {["Data Science 101", "Advanced JavaScript"].map((item) => (
+            <div key={item} className="mb-2 p-2 bg-gray-100 rounded-xl">
+              {item}
+            </div>
+          ))}
+        </ScrollArea>
+
+        <Tabs defaultValue="courses" className="mt-4">
+          <TabsList>
+            <TabsTrigger value="courses"><BookOpen className="h-4 w-4 mr-1" /> Courses</TabsTrigger>
+            <TabsTrigger value="community"><MessageSquare className="h-4 w-4 mr-1" /> Community</TabsTrigger>
+            <TabsTrigger value="profile"><User className="h-4 w-4 mr-1" /> Profile</TabsTrigger>
+          </TabsList>
+        </Tabs>
+      </div>
+
+      {/* Course Page */}
+      <div>
+        <h2 className="text-xl font-bold">Course Modules</h2>
+        <ul className="space-y-2">
+          {["Lesson 1: Intro", "Lesson 2: Basics"].map((lesson) => (
+            <li key={lesson} className="p-2 bg-gray-100 rounded-xl">
+              {lesson} <Button className="ml-2" size="sm">Download</Button>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-4">
+          <h3 className="font-semibold">Gamification</h3>
+          <Badge>+10 Points</Badge> <Badge>Beginner Badge</Badge>
+        </div>
+      </div>
+
+      {/* Community Forum */}
+      <div>
+        <h2 className="text-xl font-bold">Community Forum</h2>
+        <div className="space-y-3">
+          <div className="p-2 bg-gray-100 rounded-xl">Discuss your doubts</div>
+          <div className="p-2 bg-gray-100 rounded-xl">Request a mentor</div>
+          <div className="p-2 bg-gray-100 rounded-xl">Skill exchange opportunities</div>
+        </div>
+      </div>
+
+      {/* AI Learning Companion */}
+      <div>
+        <h2 className="text-xl font-bold">AI Learning Companion</h2>
+        <div className="bg-gray-100 p-3 rounded-xl">
+          <p className="italic">Hello! How can I assist you today?</p>
+          <Input placeholder="Ask your question..." className="mt-2" />
+        </div>
+      </div>
+
+      {/* Profile & Progress Tracking */}
+      <div>
+        <h2 className="text-xl font-bold">Your Profile</h2>
+        <div className="p-3 bg-gray-100 rounded-xl">
+          <p><strong>Achievements:</strong> 5 Badges</p>
+          <p><strong>Leaderboard Rank:</strong> #12</p>
+          <p><strong>Points:</strong> 250 XP</p>
+        </div>
+      </div>
+    </div>
+  );
+}
